@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xcredo/splash_screen.dart';
 
-
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
@@ -15,6 +14,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        // useMaterial3: false,
+        appBarTheme: const AppBarTheme(
+          // backgroundColor: Colors.white,
+          // elevation: 0,
+          // scrolledUnderElevation: 0,
+          // prevents color change on scroll
+          surfaceTintColor: Colors.transparent,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+      ),
       navigatorKey: navigatorKey,
       title: 'Splash Screen',
       themeMode: ThemeMode.light,
@@ -23,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

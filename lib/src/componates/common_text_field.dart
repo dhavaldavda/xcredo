@@ -11,7 +11,9 @@ class CustomTextFieldClass extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool isReadOnly;
   final String? rightIcon;
+  final bool isPlus;
   final void Function()? onRightIcon;
+  final void Function()? onPlusIcon;
   final TextInputType keyBordtype;
 
   CustomTextFieldClass({
@@ -19,10 +21,12 @@ class CustomTextFieldClass extends StatelessWidget {
     required this.placeholder,
     this.isReadOnly = false,
     this.isSecureText = false,
+    this.isPlus = false,
     this.onChanged,
     this.onTap,
     this.rightIcon,
     this.onRightIcon,
+    this.onPlusIcon,
     required this.keyBordtype,
   });
 
@@ -30,14 +34,47 @@ class CustomTextFieldClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            placeholder,
-            style: AppTextStyles.semiBold(
-              FontSizeType.md,
-              AppColors.titleColor,
-            ),
+          Row(
+            children: [
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: placeholder,
+                      style: AppTextStyles.semiBold(
+                        FontSizeType.md,
+                        AppColors.titleColor,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' *',
+                      style: AppTextStyles.semiBold(
+                        FontSizeType.md,
+                        Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Spacer(),
+              isPlus
+                  ? GestureDetector(
+                      onTap: onPlusIcon,
+                      child: Padding(
+                        padding: const EdgeInsets.all(2), // small tap comfort
+                        child: Image.asset(
+                          placeholder == 'Owner Name'
+                              ? 'images/add.png'
+                              : 'images/delete.png',
+                          height: 20,
+                          width: 20,
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
+            ],
           ),
           SizedBox(height: 5),
           SizedBox(
@@ -68,12 +105,14 @@ class CustomTextFieldClass extends StatelessWidget {
                         onTap: onRightIcon,
                         child: Container(
                           padding: EdgeInsets.all(
-                            10.0,
+                            11.0,
                           ), // Adjust padding as needed
                           height: 10.0, // Adjust height as needed
                           width: 10.0, // Adjust width as needed
                           child: Image.asset(
                             'images/$rightIcon',
+                            height: 20,
+                            width: 20,
                             fit: BoxFit.contain,
                           ),
                         ),

@@ -5,7 +5,7 @@ import 'package:xcredo/src/componates/common_button.dart';
 import 'package:xcredo/src/componates/common_text_field.dart';
 import 'package:xcredo/src/resources/app_colors.dart';
 import 'package:xcredo/src/screens/user_management/forgot_password_screen.dart';
-import 'package:xcredo/src/utility/global_variable.dart';
+import 'package:xcredo/src/utility/custom_tabbar.dart';
 import 'package:xcredo/src/utility/auth_footer.dart';
 import '../../resources/global_font_file.dart';
 import '../../utility/show_toast.dart';
@@ -137,41 +137,48 @@ class _LoginScreenState extends State<LoginScreen> {
                             SizedBox(height: 5.0),
                             CustomButtonClass(
                               onPressed: () {
-                                print('You have clicked on sign In');
-                                if (_emailController.text.trim().isEmpty) {
-                                  showToast(
-                                    context,
-                                    Icons.error,
-                                    'Please enter email.',
-                                    'error',
-                                  );
-                                } else if (!_emailController.text
-                                    .trim()
-                                    .isValidEmail()) {
-                                  showToast(
-                                    context,
-                                    Icons.error,
-                                    'Please enter valid email.',
-                                    'error',
-                                  );
-                                } else if (_passwordController.text
-                                    .trim()
-                                    .isEmpty) {
-                                  showToast(
-                                    context,
-                                    Icons.error,
-                                    'Please enter password.',
-                                    'error',
-                                  );
-                                } else {
-                                  loginBloc.add(
-                                    LoginSubmittedEvent(
-                                      email: _emailController.text.toString(),
-                                      password: _passwordController.text
-                                          .toString(),
-                                    ),
-                                  );
-                                }
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CustomTabBar(selectPageIndex: 0),
+                                  ),
+                                );
+
+                                // if (_emailController.text.trim().isEmpty) {
+                                //   showToast(
+                                //     context,
+                                //     Icons.error,
+                                //     'Please enter email.',
+                                //     'error',
+                                //   );
+                                // } else if (!_emailController.text
+                                //     .trim()
+                                //     .isValidEmail()) {
+                                //   showToast(
+                                //     context,
+                                //     Icons.error,
+                                //     'Please enter valid email.',
+                                //     'error',
+                                //   );
+                                // } else if (_passwordController.text
+                                //     .trim()
+                                //     .isEmpty) {
+                                //   showToast(
+                                //     context,
+                                //     Icons.error,
+                                //     'Please enter password.',
+                                //     'error',
+                                //   );
+                                // } else {
+                                // loginBloc.add(
+                                // LoginSubmittedEvent(
+                                //   email: _emailController.text.toString(),
+                                //   password: _passwordController.text
+                                //       .toString(),
+                                // ),
+                                // );
+                                // }
                               },
                               title: 'Log In',
                             ),

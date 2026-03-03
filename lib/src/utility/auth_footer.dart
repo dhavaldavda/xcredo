@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:xcredo/src/screens/user_management/login_screen.dart';
-import 'package:xcredo/src/screens/user_management/reister_screen.dart';
+import 'package:xcredo/src/screens/user_management/register_screen.dart';
 
 import 'global_variable.dart';
-
 
 class AuthFooter extends StatelessWidget {
   final bool isFromLogin;
@@ -18,14 +17,17 @@ class AuthFooter extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(
-            text: isFromLogin ? 'Don’t have an account? ' : 'Already have an account? ',
+            text: isFromLogin
+                ? 'Don’t have an account? '
+                : 'Already have an account? ',
             style: const TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'RobotoSlab',
-                color: Color.fromARGB(255, 119, 119, 119)),
+              fontSize: 14.0,
+              fontFamily: 'RobotoSlab',
+              color: Color.fromARGB(255, 119, 119, 119),
+            ),
             children: <TextSpan>[
               TextSpan(
-                text: isFromLogin ? 'Sign up' : 'Log in instead!',
+                text: isFromLogin ? 'Sign up' : 'Log in!',
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontFamily: 'RobotoSlab',
@@ -40,7 +42,7 @@ class AuthFooter extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                        isFromLogin ? RegisterScreen() : LoginScreen(),
+                            isFromLogin ? RegisterScreen() : LoginScreen(),
                       ),
                     );
                   },
@@ -54,11 +56,12 @@ class AuthFooter extends StatelessWidget {
           text: TextSpan(
             text: isFromLogin
                 ? 'By Log in, you agree to the '
-                : 'By selecting save, you agree to our ',
+                : 'By selecting Sign up, you agree to our ',
             style: const TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'RobotoSlab',
-                color: Color.fromARGB(255, 119, 119, 119)),
+              fontSize: 14.0,
+              fontFamily: 'RobotoSlab',
+              color: Color.fromARGB(255, 119, 119, 119),
+            ),
             children: <TextSpan>[
               TextSpan(
                 text: ' Terms of Service',
@@ -71,8 +74,7 @@ class AuthFooter extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchLink(Uri.parse(
-                        ''));
+                    launchLink(Uri.parse(''));
                   },
               ),
               TextSpan(
@@ -84,8 +86,7 @@ class AuthFooter extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchLink(Uri.parse(
-                        ''));
+                    launchLink(Uri.parse(''));
                   },
               ),
               TextSpan(
@@ -99,8 +100,7 @@ class AuthFooter extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchLink(Uri.parse(
-                        ''));
+                    launchLink(Uri.parse(''));
                   },
               ),
               TextSpan(
@@ -112,8 +112,7 @@ class AuthFooter extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchLink(Uri.parse(
-                        ''));
+                    launchLink(Uri.parse(''));
                   },
               ),
               TextSpan(
@@ -127,16 +126,13 @@ class AuthFooter extends StatelessWidget {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launchLink(Uri.parse(
-                        ''));
+                    launchLink(Uri.parse(''));
                   },
               ),
             ],
           ),
         ),
-        SizedBox(
-          height: 8.0,
-        )
+        SizedBox(height: 8.0),
       ],
     );
   }
